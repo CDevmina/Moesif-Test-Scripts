@@ -1,0 +1,23 @@
+{
+  "name": "moesif-test-scripts",
+  "version": "1.0.0",
+  "description": "CLI tool for generating and posting randomized Moesif test data",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "moesif",
+    "test",
+    "data",
+    "generator",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1"
+  }
+}
