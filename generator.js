@@ -41,20 +41,6 @@ const TEMPLATE_IDS = [
 ];
 
 /**
- * Sample organization names
- */
-const ORG_NAMES = [
-  'Acme Corp',
-  'TechStart Inc',
-  'DevOps Solutions',
-  'CloudNative Labs',
-  'DataDriven Co',
-  'API First Systems',
-  'MicroServices Ltd',
-  'Platform Engineering'
-];
-
-/**
  * Sample application name prefixes
  */
 const APP_PREFIXES = [
@@ -76,11 +62,9 @@ const APP_PREFIXES = [
 function generateApplicationCreatedEvent(options = {}) {
   const templateId = options.templateId || TEMPLATE_IDS[Math.floor(Math.random() * TEMPLATE_IDS.length)];
   const userId = generateId('user');
-  const companyId = generateId('company');
   const applicationId = generateId('app');
   const organizationId = generateId('org');
   const appPrefix = APP_PREFIXES[Math.floor(Math.random() * APP_PREFIXES.length)];
-  const orgName = ORG_NAMES[Math.floor(Math.random() * ORG_NAMES.length)];
   const applicationName = `${appPrefix}-${Math.random().toString(36).substring(2, 7)}`;
   
   const eventTime = options.timestamp || getRandomDateInPast(30);
@@ -88,7 +72,7 @@ function generateApplicationCreatedEvent(options = {}) {
   return {
     action_name: 'application_created',
     user_id: userId,
-    company_id: companyId,
+    company_id: organizationId,
     request: {
       time: eventTime.toISOString()
     },
@@ -96,8 +80,6 @@ function generateApplicationCreatedEvent(options = {}) {
       template_id: templateId,
       application_id: applicationId,
       application_name: applicationName,
-      organization_id: organizationId,
-      organization_name: orgName,
       created_at: eventTime.toISOString()
     }
   };
