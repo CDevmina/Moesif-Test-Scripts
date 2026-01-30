@@ -172,7 +172,7 @@ program
     console.log(`{
   "action_name": "application_created",
   "user_id": "user_1234567890_abc123",
-  "company_id": "company_1234567890_def456",
+  "company_id": "org_1234567890_def456",
   "request": {
     "time": "2024-01-15T10:30:00.000Z"
   },
@@ -180,8 +180,6 @@ program
     "template_id": "nextjs-application",
     "application_id": "app_1234567890_ghi789",
     "application_name": "dashboard-x7k2p",
-    "organization_id": "org_1234567890_jkl012",
-    "organization_name": "Acme Corp",
     "created_at": "2024-01-15T10:30:00.000Z"
   }
 }`);
