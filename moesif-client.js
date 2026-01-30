@@ -23,13 +23,15 @@ class MoesifClient {
   }
 
   /**
-   * Post actions to Moesif in bulk
-   * @param {Array} actions - Array of action events
+   * Internal helper to make batch requests with common error handling
+   * @private
+   * @param {string} endpoint - API endpoint path
+   * @param {Array} data - Data to post
    * @returns {Promise} API response
    */
-  async postActionsBatch(actions) {
+  async _makeBatchRequest(endpoint, data) {
     try {
-      const response = await this.client.post('/actions/batch', actions);
+      const response = await this.client.post(endpoint, data);
       return {
         success: true,
         status: response.status,
@@ -40,9 +42,20 @@ class MoesifClient {
         success: false,
         error: error.message,
         status: error.response?.status,
-        data: error.response?.data
+        data: error.response?.data,
+        code: error.code,
+        errno: error.errno
       };
     }
+  }
+
+  /**
+   * Post actions to Moesif in bulk
+   * @param {Array} actions - Array of action events
+   * @returns {Promise} API response
+   */
+  async postActionsBatch(actions) {
+    return this._makeBatchRequest('/actions/batch', actions);
   }
 
   /**
@@ -51,21 +64,7 @@ class MoesifClient {
    * @returns {Promise} API response
    */
   async postCompaniesBatch(companies) {
-    try {
-      const response = await this.client.post('/companies/batch', companies);
-      return {
-        success: true,
-        status: response.status,
-        data: response.data
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message,
-        status: error.response?.status,
-        data: error.response?.data
-      };
-    }
+    return this._makeBatchRequest('/companies/batch', companies);
   }
 
   /**
@@ -74,21 +73,7 @@ class MoesifClient {
    * @returns {Promise} API response
    */
   async postUsersBatch(users) {
-    try {
-      const response = await this.client.post('/users/batch', users);
-      return {
-        success: true,
-        status: response.status,
-        data: response.data
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message,
-        status: error.response?.status,
-        data: error.response?.data
-      };
-    }
+    return this._makeBatchRequest('/users/batch', users);
   }
 }
 

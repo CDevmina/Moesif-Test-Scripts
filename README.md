@@ -14,7 +14,7 @@ A Node.js CLI tool for generating and posting randomized test data to Moesif. Th
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v16 or higher)
 - npm (v6 or higher)
 - A Moesif account with an Application ID
 

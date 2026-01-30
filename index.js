@@ -86,8 +86,10 @@ program
       
       if (options.dryRun) {
         console.log('\n🔍 DRY RUN MODE - No data will be posted');
-        console.log('\nSample event:');
-        console.log(JSON.stringify(data[0], null, 2));
+        if (data.length > 0) {
+          console.log('\nSample event:');
+          console.log(JSON.stringify(data[0], null, 2));
+        }
         console.log(`\nWould post ${data.length} events to Moesif ${options.type} endpoint`);
         return;
       }

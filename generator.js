@@ -4,11 +4,14 @@
 
 /**
  * Generate a random string ID
+ * Uses timestamp, random string, and counter for uniqueness
  */
+let idCounter = 0;
 function generateId(prefix = '') {
   const timestamp = Date.now();
   const random = Math.random().toString(36).substring(2, 15);
-  return prefix ? `${prefix}_${timestamp}_${random}` : `${timestamp}_${random}`;
+  const counter = (idCounter++).toString(36);
+  return prefix ? `${prefix}_${timestamp}_${counter}_${random}` : `${timestamp}_${counter}_${random}`;
 }
 
 /**
